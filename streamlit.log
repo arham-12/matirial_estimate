@@ -1,0 +1,16 @@
+nohup: ignoring input
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  URL: http://0.0.0.0:8504
+
+16:41:28 - cmdstanpy - INFO - Chain [1] start processing
+16:41:28 - cmdstanpy - INFO - Chain [1] done processing
+16:46:26 - cmdstanpy - INFO - Chain [1] start processing
+16:46:26 - cmdstanpy - INFO - Chain [1] done processing
+16:47:37 - cmdstanpy - INFO - Chain [1] start processing
+16:47:37 - cmdstanpy - INFO - Chain [1] done processing
+2025-05-22 16:54:31.521 Received event for non-watched file: /home/erp/data_science_api/app/matirial_estimate/main.py
