@@ -85,319 +85,182 @@ st.set_page_config(page_title="Sales Forecast & Material Estimator", layout="wid
 
 
 st.markdown("""
-<style>            
-
-  :root {
-    --primary-color: #3498db !important;
-    --secondary-color: #2c3e50 !important;
-    --accent-color: #e74c3c !important;
-    --text-dark: #2c3e50 !important;
-    --text-light: #95a5a6 !important;
-    --background-light: #f8f9fa !important;
+<style>
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --text-dark: #2c3e50;
+  --text-light: #95a5a6;
+  --background-light: #f8f9fa;
 }
 
 /* Main content styling */
 .main {
-    background-color: var(--background-light) !important;
-    padding: 2rem 3rem !important;
-    min-height: 100vh !important;
+  background-color: var(--background-light) !important;
+  padding: 2rem 3rem !important;
+  min-height: 100vh !important;
 }
 [data-testid="stHeader"] {
-    background: var(--background-light) !important;
+  background: var(--background-light) !important;
 }
-header [data-testid="stToolbar"] {   
-    display: none !important;
+header [data-testid="stToolbar"] {
+  display: none !important;
 }
-/* Header styling */
+
+/* Headings */
 h1 {
-    color: var(--secondary-color) !important;
-    border-bottom: 3px solid var(--primary-color) !important;
-    padding-bottom: 0.5rem !important;
-    margin-bottom: 2rem !important;
-    font-size: 2.5rem !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.5px !important;
+  color: var(--secondary-color) !important;
+  border-bottom: 3px solid var(--primary-color) !important;
+  padding-bottom: 0.5rem !important;
+  margin-bottom: 2rem !important;
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
 }
 h3, h4 {
-    color: var(--secondary-color) !important;
-    font-weight: 500 !important;
-    margin-bottom: 1rem !important;
-    letter-spacing: -0.5px !important;
+  color: var(--secondary-color) !important;
+  font-weight: 500 !important;
+  margin-bottom: 1rem !important;
 }
 h3 {
-    font-size: 1.5rem !important;
+  font-size: 1.5rem !important;
 }
 h4 {
-    font-size: 1.25rem !important;
+  font-size: 1.25rem !important;
 }
 
 /* Sidebar styling */
 [data-testid="stSidebar"] {
-    background: linear-gradient(160deg, var(--secondary-color) 0%, var(--primary-color) 100%) !important;
-    padding: 2rem 1.5rem !important;
-    border-right: 1px solid #dfe6e9 !important;
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05) !important;
+  background: linear-gradient(160deg, var(--secondary-color), var(--primary-color)) !important;
+  padding: 2rem 1.5rem !important;
+  border-right: 1px solid #dfe6e9 !important;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05) !important;
 }
 
 /* Selectbox */
-.stSelectbox:not(.st-emotion-cache-13ln4jf) {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border-radius: 8px !important;
-    padding: 0.5rem !important;
-    transition: all 0.3s ease !important;
+.stSelectbox {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  padding: 0.5rem !important;
+  transition: all 0.3s ease !important;
 }
 .stSelectbox:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
 }
 
 /* Metric cards */
 [data-testid="stMetric"] {
-    background: white !important;
-    border-radius: 12px !important;
-    padding: 1.75rem !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
-    transition: transform 0.3s ease !important;
+  background: white !important;
+  border-radius: 12px !important;
+  padding: 1.75rem !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  transition: transform 0.3s ease !important;
 }
 [data-testid="stMetric"]:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
 }
 [data-testid="stMetricLabel"] {
-    font-size: 1.1rem !important;
-    color: var(--text-light) !important;
+  font-size: 1.1rem !important;
+  color: var(--text-light) !important;
 }
 [data-testid="stMetricValue"] {
-    font-size: 2rem !important;
-    color: var(--secondary-color) !important;
-    font-weight: 800 !important;
+  font-size: 2rem !important;
+  color: var(--secondary-color) !important;
+  font-weight: 800 !important;
 }
 
 /* Expander Styling */
 [data-testid="stExpander"] {
-    margin-top: 2rem !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    border-radius: 12px !important;
+  margin-top: 2rem !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 12px !important;
 }
 [data-testid="stExpander"] summary {
-    background:  #ADD8E6 !important;
-    padding: 1.25rem !important;
-    font-weight: 700 !important;
-    color: white !important;
-    border-radius: 12px !important;
-    transition: background 0.2s ease !important;
+  background: #ADD8E6 !important;
+  padding: 1.25rem !important;
+  font-weight: 700 !important;
+  color: white !important;
+  border-radius: 12px !important;
 }
 [data-testid="stExpander"] summary:hover {
-    background:  #ADD8E6 !important;
+  background: #90cce6 !important;
 }
+
+/* Table Styling */
 [data-testid="stTableStyledTable"] {
-    border-radius: 24px !important;
-    background: white !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    transition: all 0.3s ease !important;
+  border-radius: 24px !important;
+  background: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease !important;
 }
 [data-testid="stTableStyledTable"]:hover {
-    transform: translateY(-2px) !important;
+  transform: translateY(-2px) !important;
 }
 [data-testid="stTableStyledTable"] thead tr {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
 }
 [data-testid="stTableStyledTable"] thead th {
-    color: white !important;
-    font-weight: 600 !important;
-    padding: 1.2rem 1.5rem !important;
-    font-size: 0.95rem !important;         
-    text-transform: uppercase !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 1.2rem 1.5rem !important;
+  font-size: 0.95rem !important;
+  text-transform: uppercase !important;
 }
 [data-testid="stTableStyledTable"] tbody td {
-    padding: 1rem 1.5rem !important;
-    color: var(--text-dark) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-}   
-[data-testid="stFullScreenFrame"] {
-    border-radius: 24px !important;
+  padding: 1rem 1.5rem !important;
+  color: var(--text-dark) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
 }
+
+/* Fullscreen frames */
+[data-testid="stFullScreenFrame"] {
+  border-radius: 24px !important;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px !important;
-    height: 8px !important;
+  width: 8px !important;
+  height: 8px !important;
 }
 ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05) !important;
+  background: rgba(0, 0, 0, 0.05) !important;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2) !important;
-    border-radius: 4px !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius: 4px !important;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.3) !important;
+  background: rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .main {
-        padding: 1.5rem !important;
-    }
-    [data-testid="stMetric"] {
-        margin-bottom: 1.5rem !important;
-    }
-    .stTable td, .stTable th {
-        padding: 0.75rem !important;
-    }
-}
-  --text-dark: #2c3e50 !important;
-    --text-light: #95a5a6 !important;
-    --background-light: #f8f9fa !important;
-}
-
-/* Main content styling */
-.main {
-    background-color: var(--background-light) !important;
-    padding: 2rem 3rem !important;
-    min-height: 100vh !important;
-}
-[data-testid="stHeader"] {
-    background: var(--background-light) !important;
-}
-header [data-testid="stToolbar"] {   
-    display: none !important;
-}
-/* Header styling */
-h1 {
-    color: var(--secondary-color) !important;
-    border-bottom: 3px solid var(--primary-color) !important;
-    padding-bottom: 0.5rem !important;
-    margin-bottom: 2rem !important;
-    font-size: 2.5rem !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.5px !important;
-}
-h3, h4 {
-    color: var(--secondary-color) !important;
-    font-weight: 500 !important;
-    margin-bottom: 1rem !important;
-    letter-spacing: -0.5px !important;
-}
-h3 {
-    font-size: 1.5rem !important;
-}
-h4 {
+  .main {
+    padding: 1rem 1rem !important;
+  }
+  [data-testid="stMetric"] {
+    margin-bottom: 1.5rem !important;
+    padding: 1rem !important;
+  }
+  h1 {
+    font-size: 2rem !important;
+  }
+  h3 {
     font-size: 1.25rem !important;
-}
-
-/* Sidebar styling */
-[data-testid="stSidebar"] {
-    background: linear-gradient(160deg, var(--secondary-color) 0%, var(--primary-color) 100%) !important;
-    padding: 2rem 1.5rem !important;
-    border-right: 1px solid #dfe6e9 !important;
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* Selectbox */
-.stSelectbox:not(.st-emotion-cache-13ln4jf) {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border-radius: 8px !important;
-    padding: 0.5rem !important;
-    transition: all 0.3s ease !important;
-}
-.stSelectbox:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
-}
-
-/* Metric cards */
-[data-testid="stMetric"] {
-    background: white !important;
-    border-radius: 12px !important;
-    padding: 1.75rem !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
-    transition: transform 0.3s ease !important;
-}
-[data-testid="stMetric"]:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
-}
-[data-testid="stMetricLabel"] {
-    font-size: 1.1rem !important;
-    color: var(--text-light) !important;
-}
-[data-testid="stMetricValue"] {
-    font-size: 2rem !important;
-    color: var(--secondary-color) !important;
-    font-weight: 800 !important;
-}
-
-/* Expander Styling */
-[data-testid="stExpander"] {
-    margin-top: 2rem !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    border-radius: 12px !important;
-}
-[data-testid="stExpander"] summary {
-    background:  #ADD8E6 !important;
-    padding: 1.25rem !important;
-    font-weight: 700 !important;
-    color: white !important;
-    border-radius: 12px !important;
-    transition: background 0.2s ease !important;
-}
-[data-testid="stExpander"] summary:hover {
-    background:  #ADD8E6 !important;
-}
-[data-testid="stTableStyledTable"] {
-    border-radius: 24px !important;
-    background: white !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    transition: all 0.3s ease !important;
-}
-[data-testid="stTableStyledTable"]:hover {
-    transform: translateY(-2px) !important;
-}
-[data-testid="stTableStyledTable"] thead tr {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
-}
-[data-testid="stTableStyledTable"] thead th {
-    color: white !important;
-    font-weight: 600 !important;
-    padding: 1.2rem 1.5rem !important;
-    font-size: 0.95rem !important;         
-    text-transform: uppercase !important;
-}
-[data-testid="stTableStyledTable"] tbody td {
-    padding: 1rem 1.5rem !important;
-    color: var(--text-dark) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-}   
-[data-testid="stFullScreenFrame"] {
-    border-radius: 24px !important;
-}
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px !important;
-    height: 8px !important;
-}
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05) !important;
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2) !important;
-    border-radius: 4px !important;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .main {
-        padding: 1.5rem !important;
-    }
-    [data-testid="stMetric"] {
-        margin-bottom: 1.5rem !important;
-    }
-    .stTable td, .stTable th {
-        padding: 0.75rem !important;
-    }
+  }
+  h4 {
+    font-size: 1rem !important;
+  }
+  [data-testid="stSidebar"] {
+    padding: 1rem !important;
+  }
+  [data-testid="stTableStyledTable"] thead th,
+  [data-testid="stTableStyledTable"] tbody td {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
 }
 </style>
 
