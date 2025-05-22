@@ -399,6 +399,7 @@ h4 {
         padding: 0.75rem !important;
     }
 }
+</style>
 
 """, unsafe_allow_html=True)
 
