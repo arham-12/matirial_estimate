@@ -210,9 +210,11 @@ h4 {
 
 [data-testid="stTableStyledTable"]:hover {
   transform: translateY(-2px) !important;
+    
 }
 [data-testid="stTableStyledTable"] thead tr {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+  height: 100px !important;
 }
 [data-testid="stTableStyledTable"] thead th {
   color: white !important;
