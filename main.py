@@ -101,6 +101,10 @@ st.markdown("""
   padding: 2rem 3rem !important;
   min-height: 100vh !important;
 }
+
+[data-testid="stMainBlockContainer"] {
+    background: var(--background-light) !important;
+}
 [data-testid="stHeader"] {
   background: var(--background-light) !important;
 }
