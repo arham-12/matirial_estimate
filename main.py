@@ -86,10 +86,7 @@ st.set_page_config(page_title="Sales Forecast & Material Estimator", layout="wid
 
 st.markdown("""
 <style>            
-:root {
-    --primary-color: #3498db !important;
-    --secondary-color: #2c3e50 !important;
-    --accent-color: #e74c3c !important;
+
   :root {
     --primary-color: #3498db !important;
     --secondary-color: #2c3e50 !important;
