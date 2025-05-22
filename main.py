@@ -96,7 +96,7 @@ st.markdown("""
 }
 
 /* Main content styling */
-[data-testid="stMain"] {
+section [data-testid="stMain"] {
   background-color: var(--background-light) !important;
   padding: 2rem 3rem !important;
   min-height: 100vh !important;
