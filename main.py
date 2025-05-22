@@ -84,72 +84,53 @@ st.set_page_config(page_title="Sales Forecast & Material Estimator", layout="wid
 
 
 
-
 st.markdown("""
 <style>
-    /* Define variables for both light and dark themes */
-    [data-theme="light"] {
+    :root {
         --primary-color: #3498db;
         --secondary-color: #2c3e50;
         --accent-color: #e74c3c;
         --text-dark: #2c3e50;
         --text-light: #95a5a6;
-        --background-color: #f8f9fa;
-        --metric-bg: white;
-        --expander-bg: #ADD8E6;
-        --table-head-bg: linear-gradient(135deg, #3498db, #2c3e50);
+        --background-light: #f8f9fa;
     }
 
-    [data-theme="dark"] {
-        --primary-color: #2980b9;
-        --secondary-color: #ecf0f1;
-        --accent-color: #e74c3c;
-        --text-dark: #ecf0f1;
-        --text-light: #bdc3c7;
-        --background-color: #1e1e1e;
-        --metric-bg: #2c3e50;
-        --expander-bg: #1a5276;
-        --table-head-bg: linear-gradient(135deg, #2980b9, #34495e);
-    }
-
+    /* Main content styling */
     .main {
-        background-color: var(--background-color);
+        background-color: var(--background-light);
         padding: 2rem 3rem;
         min-height: 100vh;
     }
-
     [data-testid="stHeader"] {
-        background: var(--background-color);
+        background: var(--background-light);
     }
-
     header [data-testid="stToolbar"] {   
-        display: none !important;
-    }
-
-    h1, h3, h4 {
-        color: var(--secondary-color);
-    }
-
+    display: none !important;
+}
+    /* Header styling */
     h1 {
+        color: var(--secondary-color);
         border-bottom: 3px solid var(--primary-color);
         padding-bottom: 0.5rem;
         margin-bottom: 2rem;
         font-size: 2.5rem;
         font-weight: 700;
+        letter-spacing: -0.5px;
     }
-
+    h3, h4 {
+        color: var(--secondary-color);
+        font-weight: 500;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+    }
     h3 {
         font-size: 1.5rem;
-        font-weight: 500;
-        margin-bottom: 1rem;
     }
-
     h4 {
         font-size: 1.25rem;
-        font-weight: 500;
-        margin-bottom: 1rem;
     }
 
+    /* Sidebar styling */
     [data-testid="stSidebar"] {
         background: linear-gradient(160deg, var(--secondary-color) 0%, var(--primary-color) 100%);
         padding: 2rem 1.5rem;
@@ -157,70 +138,71 @@ st.markdown("""
         box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
     }
 
-    .stSelectbox {
+    /* Selectbox */
+    .stSelectbox:not(.st-emotion-cache-13ln4jf) {
         background: rgba(255, 255, 255, 0.1) !important;
         border-radius: 8px !important;
         padding: 0.5rem !important;
         transition: all 0.3s ease;
     }
-
     .stSelectbox:hover {
         background: rgba(255, 255, 255, 0.15) !important;
     }
 
+    /* Metric cards */
     [data-testid="stMetric"] {
-        background: var(--metric-bg);
+        background: white;
         border-radius: 12px;
         padding: 1.75rem;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         border: 1px solid rgba(0, 0, 0, 0.05);
         transition: transform 0.3s ease;
     }
-
     [data-testid="stMetric"]:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
     }
-
     [data-testid="stMetricLabel"] {
         font-size: 1.1rem !important;
         color: var(--text-light) !important;
     }
-
     [data-testid="stMetricValue"] {
         font-size: 2rem !important;
         color: var(--secondary-color) !important;
         font-weight: 800 !important;
     }
 
+
+
+    /* Expander Styling */
     [data-testid="stExpander"] {
         margin-top: 2rem;
         border: 1px solid rgba(0, 0, 0, 0.08);
         border-radius: 12px;
     }
-
     [data-testid="stExpander"] summary {
-        background: var(--expander-bg);
+        background:  #ADD8E6;
         padding: 1.25rem;
         font-weight: 700;
         color: white;
         border-radius: 12px;
+        transition: background 0.2s ease;
     }
-
     [data-testid="stExpander"] summary:hover {
-        background: var(--expander-bg);
+        background:  #ADD8E6;
     }
-
     [data-testid="stTableStyledTable"] {
         border-radius: 24px;
-        background: var(--metric-bg);
+        background: white;
         border: 1px solid rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
     }
-
+    [data-testid="stTableStyledTable"]:hover {
+        transform: translateY(-2px);
+    }
     [data-testid="stTableStyledTable"] thead tr {
-        background: var(--table-head-bg);
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     }
-
     [data-testid="stTableStyledTable"] thead th {
         color: white;
         font-weight: 600;
@@ -228,41 +210,40 @@ st.markdown("""
         font-size: 0.95rem;         
         text-transform: uppercase;
     }
-
     [data-testid="stTableStyledTable"] tbody td {
         padding: 1rem 1.5rem;
         color: var(--text-dark);
         border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
+    }   
     [data-testid="stFullScreenFrame"] {
         border-radius: 24px;
     }
-
+    /* Custom Scrollbar */
     ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
     }
-
     ::-webkit-scrollbar-track {
         background: rgba(0, 0, 0, 0.05);
     }
-
     ::-webkit-scrollbar-thumb {
         background: rgba(0, 0, 0, 0.2);
         border-radius: 4px;
     }
-
     ::-webkit-scrollbar-thumb:hover {
         background: rgba(0, 0, 0, 0.3);
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
         .main {
             padding: 1.5rem;
         }
         [data-testid="stMetric"] {
             margin-bottom: 1.5rem;
+        }
+        .stTable td, .stTable th {
+            padding: 0.75rem;
         }
     }
 </style>
