@@ -198,7 +198,16 @@ h4 {
   background: white !important;
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
   transition: all 0.3s ease !important;
+
 }
+[data-testid="stTable"]  {
+    height:400px !important;
+
+}
+            
+
+
+
 [data-testid="stTableStyledTable"]:hover {
   transform: translateY(-2px) !important;
 }
